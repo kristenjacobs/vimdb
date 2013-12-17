@@ -29,12 +29,14 @@ def openVim():
         updateFile()
         updateLine()       
         g_vimOpen = True
+        gdb.events.stop.connect(stopHandler)
  
 def closeVim():
     global g_vimOpen
     if g_vimOpen:
         sendCommand("q!")
         g_vimOpen = False
+        gdb.events.stop.disconnect(stopHandler)
 
 def updateFile():
     fileName = getFileName()
@@ -66,7 +68,6 @@ class VimOpenCommand (gdb.Command):
 
     def invoke (self, arg, from_tty):
         openVim()
-        gdb.events.stop.connect(stopHandler)
 
 class VimCloseCommand (gdb.Command):
     "Closes vim."
@@ -77,8 +78,12 @@ class VimCloseCommand (gdb.Command):
 
     def invoke (self, arg, from_tty):
         closeVim()
-        gdb.events.stop.disconnect(stopHandler)
 
 VimCommand()
 VimOpenCommand()
 VimCloseCommand()
+
+def exitedHandler(event):
+    closeVim()
+
+gdb.events.exited.connect(exitedHandler)
