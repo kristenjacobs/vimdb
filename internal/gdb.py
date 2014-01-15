@@ -36,3 +36,17 @@ def stopHandler(event):
 
 gdb.events.stop.connect(stopHandler)
 
+# Overrides the gdb quit command to ensure that 
+# vim exits when the command is invoked.
+class QuitCommand (gdb.Command):
+    "Quit command."
+
+    def __init__ (self):
+        super (QuitCommand, self).__init__ ("quit",
+               gdb.COMMAND_SUPPORT, gdb.COMPLETE_NONE, True)
+
+    def invoke (self, arg, from_tty):
+        sendCommand("x")
+
+QuitCommand()
+
