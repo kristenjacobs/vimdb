@@ -1,2 +1,6 @@
-gvim -R --servername VIMDB -c "ConqueTermSplit gdb -ex \"source /home/kris/ProgrammingHome/VimDb/internal/gdb.py\" $*"
+if [ -z "$VIMDB_ROOT" ]; then
+    echo "Error: Need to set VIMDB_ROOT"
+    exit 1
+fi  
+gvim -R --servername VIMDB -c "ConqueTermSplit gdb -ex \"source $VIMDB_ROOT/gdb.py\" $*"
 
