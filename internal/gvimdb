@@ -1,0 +1,2 @@
+gvim -R --servername VIMDB -c "ConqueTermSplit gdb -ex \"source /home/kris/ProgrammingHome/VimDb/internal/gdb.py\" $*"
+
