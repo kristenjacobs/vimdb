@@ -2,8 +2,9 @@ Simple integration of GDB and the VIM editor.
 
 Installation:
 
-Clone this repository, then set the VIMDB_ROOT environment variable
-to point to the top level directory of this repository.
+Clone this repository, set the VIMDB_ROOT environment variable
+to point to the top level directory of this repository, then add
+this directory to your PATH.
 
 Usage:
 
