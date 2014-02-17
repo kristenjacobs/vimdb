@@ -1,21 +1,21 @@
 Simple integration of GDB and the VIM editor.
 
-2 Implmentations:
+Installation:
 
-Internal
---------
+Clone this repository, then set the VIMDB_ROOT environment variable
+to point to the top level directory of this repository.
 
-Run GDB as normal from the command line. This implemention
-contains a GDB script that adds the 'vim open' and vim close'
-commands, which open/close a instance of the external gvim editor.
-If open, this editor will then get updated with the current file/line
-when GDB stops.
+Usage:
 
-External 
---------
+vimdb/gvimdb <executable>
 
-In this implemention we open vim/gvim, which using the Conque plugin,
-opens a GDB console in a bottom window, and creates a top window for the 
-current file/line to be shown. This then gets updated when GDB stops.
+This will open an instance of vim/gvim, with 2 windows. Gdb will be 
+running in a console in the bottom window whereas the top window is 
+used to display the current file/line of the source file being debugged. 
+This window gets updated whenever GDB stops.
+
+Note: In terms of implementation, this relies on the user having the 
+vim Conque plugin installed, as this provides the ability to run a console
+application (GDB in this case), from within vim.
 
 
